@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1010011812858:android:c8b87e50e65ab10b",
+        "mobilesdk_app_id": "1:1010011812858:android:1d916cb83a6d5cc1",
         "android_client_info": {
-          "package_name": "br.com.thideoli.vendendormovel"
+          "package_name": "br.com.thideoli.vendedormovel"
         }
       },
       "oauth_client": [
