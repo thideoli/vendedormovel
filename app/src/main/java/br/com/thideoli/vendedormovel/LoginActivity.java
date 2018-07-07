@@ -1,5 +1,6 @@
 package br.com.thideoli.vendedormovel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -58,6 +59,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else
                             Toast.makeText(LoginActivity.this, R.string.message_failure_in_login, Toast.LENGTH_LONG).show();
                     }
