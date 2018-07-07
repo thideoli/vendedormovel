@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1010011812858",
+    "firebase_url": "https://vendedor-movel.firebaseio.com",
+    "project_id": "vendedor-movel",
+    "storage_bucket": "vendedor-movel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010011812858:android:c8b87e50e65ab10b",
+        "android_client_info": {
+          "package_name": "br.com.thideoli.vendendormovel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010011812858-v2chkpeiibc6d6f03mc0ies3ek3ng81r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNX_0XHm42RoY0i70kAiypetMzHi6KTkM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
