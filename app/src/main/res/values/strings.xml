@@ -3,4 +3,5 @@
     <string name="login_activity_title">Login</string>
     <string name="message_fill_all_fields">Preencha todos os campos</string>
     <string name="message_failure_in_login">Falha ao entrar!\n\nVerifique o e-mail e/ou a senha e tente novamente.</string>
+    <string name="message_failure_network">Verifique sua conexão com a internet.</string>
 </resources>
