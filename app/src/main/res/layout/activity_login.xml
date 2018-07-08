@@ -20,7 +20,7 @@
         android:hint="E-mail"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,4 +44,5 @@
         android:text="Entrar"
         app:layout_constraintEnd_toEndOf="@+id/passwordField"
         app:layout_constraintTop_toBottomOf="@+id/passwordField" />
+
 </android.support.constraint.ConstraintLayout>
