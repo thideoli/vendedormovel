@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import br.com.thideoli.vendedormovel.utils.Utils;
+import br.com.thideoli.vendedormovel.utils.Network;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     public void signIn(View view){
         setAttributes();
 
-        if(!Utils.isConnected(LoginActivity.this)){
+        if(!Network.isConnected(LoginActivity.this)){
             Toast.makeText(LoginActivity.this, R.string.message_failure_network, Toast.LENGTH_LONG).show();
             return;
         }
