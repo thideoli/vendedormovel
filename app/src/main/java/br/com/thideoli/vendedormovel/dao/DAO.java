@@ -18,12 +18,8 @@ public class DAO extends SQLiteOpenHelper {
         sql = "CREATE TABLE Clientes (codigo TEXT PRIMARY KEY, razao_social TEXT NOT NULL, cnpj TEXT NOT NULL, endereco TEXT NOT NULL, telefone TEXT NOT NULL, email TEXT NOT NULL);";
         db.execSQL(sql);
 
-        //Cria tabela Produtos
+        //Cria tabela Produto
         sql = "CREATE TABLE Produtos (codigo TEXT PRIMARY KEY, descricao TEXT NOT NULL, preco REAL NOT NULL, estoque INTEGER NOT NULL);";
-        db.execSQL(sql);
-
-        //Cria tabela Pedidos
-        sql = "CREATE TABLE Pedidos (codigo TEXT PRIMARY KEY, vendedor TEXT NOT NULL, data TEXT NOT NULL, total REAL NOT NULL, sincronizado INTEGER NOT NULL);";
         db.execSQL(sql);
     }
 
