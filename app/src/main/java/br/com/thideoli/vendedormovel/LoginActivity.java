@@ -13,9 +13,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.io.Serializable;
 
 import br.com.thideoli.vendedormovel.utils.Utils;
 
@@ -60,10 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validData() {
-        if(email.trim().equals("") || password.trim().equals(""))
-            return false;
-
-        return true;
+        return !email.trim().equals("") && !password.trim().equals("");
     }
 
     private void signIn(String email, String password) {

@@ -1,7 +1,17 @@
 <resources>
-    <string name="app_name">Vendedor Movel</string>
+    <string name="app_name">Vendedor Móvel</string>
     <string name="login_activity_title">Login</string>
     <string name="message_fill_all_fields">Preencha todos os campos</string>
     <string name="message_failure_in_login">Falha ao entrar!\n\nVerifique o e-mail e/ou a senha e tente novamente.</string>
     <string name="message_failure_network">Verifique sua conexão com a internet.</string>
+    <string name="logout">Sair</string>
+    <string name="synchronize">Sincronizar</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="login">Entrar</string>
+    <string name="loged_as">Entrou como:</string>
+    <string name="last_synchronize">Última sincronização:</string>
+    <string name="orders">Pedidos</string>
+    <string name="customers">Clientes</string>
+    <string name="products">Produtos</string>
 </resources>
