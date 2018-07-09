@@ -1,6 +1,8 @@
 package br.com.thideoli.vendedormovel.model;
 
-public class Produto {
+import java.io.Serializable;
+
+public class Produto implements Serializable {
 
     private String codigo;
     private String descricao;

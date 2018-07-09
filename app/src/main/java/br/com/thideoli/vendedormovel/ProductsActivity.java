@@ -24,6 +24,7 @@ public class ProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle(R.string.products);
         setContentView(R.layout.activity_products);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -46,10 +47,17 @@ public class ProductsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Produto produto = (Produto) lvProdutos.getItemAtPosition(position);
-                Toast.makeText(ProductsActivity.this, produto.getCodigo(), Toast.LENGTH_SHORT).show();
 
-                
+                Intent intent = new Intent(ProductsActivity.this, ProductActivity.class);
+                intent.putExtra("produto", produto);
+                startActivity(intent);
             }
         };
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

@@ -18,7 +18,7 @@ public class ProdutoDAO extends DAO {
     }
 
     public List<Produto> listAll(){
-        String sql = "SELECT * FROM Produtos";
+        String sql = "SELECT * FROM Produtos ORDER BY descricao ASC";
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(sql, null);
 
@@ -35,7 +35,7 @@ public class ProdutoDAO extends DAO {
     }
 
     public Produto findByCode(String codigo){
-        String sql = "SELECT * FROM Produtos WHERE codigo = ?";
+        String sql = "SELECT * FROM Produtos WHERE codigo = ? ORDER BY descricao ASC";
 
         String[] args = {codigo};
 

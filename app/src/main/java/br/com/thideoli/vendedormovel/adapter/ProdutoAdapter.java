@@ -1,6 +1,7 @@
 package br.com.thideoli.vendedormovel.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,12 +48,16 @@ public class ProdutoAdapter extends BaseAdapter{
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
         View view = layoutInflater.inflate(R.layout.list_products, null);
 
+        TextView descricao = view.findViewById(R.id.product_description);
+        descricao.setText(produto.getDescricao());
 
-
-        TextView nome = view.findViewById(R.id.product_description);
-        nome.setText(produto.getDescricao());
-
-
+        TextView estoque = view.findViewById(R.id.product_stock);
+        estoque.setTextColor(Color.BLUE);
+        estoque.setText("Disponível");
+        if(produto.getEstoque() == 0) {
+            estoque.setTextColor(Color.RED);
+            estoque.setText("Indisponível");
+        }
 
         return view;
     }
