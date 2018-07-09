@@ -52,7 +52,7 @@ public class ProdutoDAO extends DAO {
         return produto;
     }
 
-    public void insert(Produto produto){
+    public void insert(Produto produto) throws Exception{
         ContentValues cv = getContentValues(produto);
 
         SQLiteDatabase db = getWritableDatabase();

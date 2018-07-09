@@ -21,9 +21,10 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
+import br.com.thideoli.vendedormovel.helper.ProdutoHelper;
+import br.com.thideoli.vendedormovel.utils.AsyncResponse;
 import br.com.thideoli.vendedormovel.utils.Network;
 import br.com.thideoli.vendedormovel.utils.Receiver;
-import br.com.thideoli.vendedormovel.utils.AsyncResponse;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
@@ -105,22 +106,33 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     @Override
     public void processFinish(Object output) {
 
-        progressDialog.dismiss();
-
         if(output == null) {
+            progressDialog.dismiss();
             Toast.makeText(MainActivity.this, "Erro ao sincronizar, tente novamente.", Toast.LENGTH_LONG).show();
             return;
         }
 
-        String produtos = ((Map<String, String>) output).get("produtos");
-        String clientes = ((Map<String, String>) output).get("clientes");
+        progressDialog.setMessage("Atualizando...");
 
-        Toast.makeText(MainActivity.this, produtos, Toast.LENGTH_LONG).show();
-        Toast.makeText(MainActivity.this, clientes, Toast.LENGTH_LONG).show();
+        try {
 
-        atualizaDataHoraUltimaSincronizacao();
+            String produtos = ((Map<String, String>) output).get("produtos");
+            //String clientes = ((Map<String, String>) output).get("clientes");
+
+            new ProdutoHelper(this).sendJsonToDB(produtos);
+
+            atualizaDataHoraUltimaSincronizacao();
+
+            progressDialog.dismiss();
+
+        } catch (Exception e) {
+            progressDialog.dismiss();
+            Toast.makeText(MainActivity.this, "Erro ao sincronizar, tente novamente.", Toast.LENGTH_LONG).show();
+        }
 
     }
+
+
 
     private void atualizaDataHoraUltimaSincronizacao() {
         Calendar cal = new GregorianCalendar(Calendar.getInstance().getTimeZone());
