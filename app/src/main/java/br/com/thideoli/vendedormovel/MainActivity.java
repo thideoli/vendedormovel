@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     public void listProducts(View view) {
+        Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
+        startActivity(intent);
     }
 
 
@@ -131,8 +133,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         }
 
     }
-
-
 
     private void atualizaDataHoraUltimaSincronizacao() {
         Calendar cal = new GregorianCalendar(Calendar.getInstance().getTimeZone());
