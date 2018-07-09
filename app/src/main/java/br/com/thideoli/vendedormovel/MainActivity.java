@@ -21,6 +21,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
+import br.com.thideoli.vendedormovel.helper.ClienteHelper;
 import br.com.thideoli.vendedormovel.helper.ProdutoHelper;
 import br.com.thideoli.vendedormovel.utils.AsyncResponse;
 import br.com.thideoli.vendedormovel.utils.Network;
@@ -97,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     public void listCustomers(View view) {
+        Intent intent = new Intent(MainActivity.this, CustomersActivity.class);
+        startActivity(intent);
     }
 
     public void listProducts(View view) {
@@ -119,9 +122,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         try {
 
             String produtos = ((Map<String, String>) output).get("produtos");
-            //String clientes = ((Map<String, String>) output).get("clientes");
-
             new ProdutoHelper(this).sendJsonToDB(produtos);
+
+            String clientes = ((Map<String, String>) output).get("clientes");
+            new ClienteHelper(this).sendJsonToDB(clientes);
 
             atualizaDataHoraUltimaSincronizacao();
 

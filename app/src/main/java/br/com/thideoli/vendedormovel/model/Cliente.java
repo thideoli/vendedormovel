@@ -1,6 +1,8 @@
 package br.com.thideoli.vendedormovel.model;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable{
 
     private String codigo;
     private String razaoSocial;
@@ -8,6 +10,8 @@ public class Cliente {
     private String endereco;
     private String telefone;
     private String email;
+
+    public Cliente() { }
 
     public Cliente(String codigo, String razaoSocial, String cnpj, String endereco, String telefone, String email) {
         this.codigo = codigo;

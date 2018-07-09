@@ -20,10 +20,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_detail_code" />
+        app:layout_constraintTop_toBottomOf="@+id/order_detail_code" />
 
     <TextView
-        android:id="@+id/product_detail_description"
+        android:id="@+id/order_detail_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -51,10 +51,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_detail_description" />
+        app:layout_constraintTop_toBottomOf="@+id/order_detail_name" />
 
     <TextView
-        android:id="@+id/product_detail_price"
+        android:id="@+id/order_detail_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -82,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_detail_price" />
+        app:layout_constraintTop_toBottomOf="@+id/order_detail_address" />
 
     <TextView
         android:id="@+id/textView8"
@@ -101,7 +101,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/product_detail_code"
+        android:id="@+id/order_detail_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"

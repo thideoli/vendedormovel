@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.thideoli.vendedormovel.ProductsActivity;
 import br.com.thideoli.vendedormovel.R;
 import br.com.thideoli.vendedormovel.model.Produto;
 
@@ -48,7 +46,7 @@ public class ProdutoAdapter extends BaseAdapter{
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
         View view = layoutInflater.inflate(R.layout.list_products, null);
 
-        TextView descricao = view.findViewById(R.id.product_description);
+        TextView descricao = view.findViewById(R.id.order_name);
         descricao.setText(produto.getDescricao());
 
         TextView estoque = view.findViewById(R.id.product_stock);
