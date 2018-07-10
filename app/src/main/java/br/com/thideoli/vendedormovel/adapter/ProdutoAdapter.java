@@ -46,7 +46,7 @@ public class ProdutoAdapter extends BaseAdapter{
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
         View view = layoutInflater.inflate(R.layout.list_products, null);
 
-        TextView descricao = view.findViewById(R.id.order_name);
+        TextView descricao = view.findViewById(R.id.product_name);
         descricao.setText(produto.getDescricao());
 
         TextView estoque = view.findViewById(R.id.product_stock);

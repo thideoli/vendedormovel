@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     public void listOrders(View view) {
+        Intent intent = new Intent(MainActivity.this, OrdersActivity.class);
+        startActivity(intent);
     }
 
     public void listCustomers(View view) {

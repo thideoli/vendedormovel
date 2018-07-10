@@ -36,6 +36,11 @@ public class PedidoHelper {
 
             Pedido pedido = new Pedido();
             pedido.setCodigo(entry.getKey());
+            pedido.setCliente(joPedido.get("cliente").getAsString());
+            pedido.setVendedor(joPedido.get("vendedor").getAsString());
+            pedido.setData(joPedido.get("data").getAsString());
+            pedido.setTotal(joPedido.get("total").getAsDouble());
+            pedido.setEnviado(joPedido.get("enviado").getAsInt());
 
             PedidoDAO pedidoDAO = new PedidoDAO(context);
 
