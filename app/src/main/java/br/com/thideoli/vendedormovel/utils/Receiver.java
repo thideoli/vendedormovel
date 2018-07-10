@@ -37,6 +37,13 @@ public class Receiver extends AsyncTask {
             bufferedReader.close();
             retorno.put("clientes", content.toString());
 
+            bufferedReader = getBufferedReader("https://vendedor-movel.firebaseio.com/pedidos.json");
+            content = new StringBuilder();
+            while ((line = bufferedReader.readLine()) != null)
+                content.append(line);
+            bufferedReader.close();
+            retorno.put("pedidos", content.toString());
+
             return retorno;
 
         } catch (Exception e) {

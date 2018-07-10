@@ -20,23 +20,27 @@ public class ClienteHelper {
         this.context = context;
     }
 
-    public void sendJsonToDB(String produtos) throws Exception {
+    public void sendJsonToDB(String clientes) throws Exception {
+
+        if(clientes.equals("null"))
+            return;
+
         JsonParser jp = new JsonParser();
-        JsonObject jo = jp.parse(produtos).getAsJsonObject();
+        JsonObject jo = jp.parse(clientes).getAsJsonObject();
 
         Set<Map.Entry<String, JsonElement>> entries = jo.entrySet();
 
         for (Map.Entry<String, JsonElement> entry: entries) {
 
-            JsonObject joProduto = jo.getAsJsonObject(entry.getKey());
+            JsonObject joCliente = jo.getAsJsonObject(entry.getKey());
 
             Cliente cliente = new Cliente();
             cliente.setCodigo(entry.getKey());
-            cliente.setRazaoSocial(joProduto.get("razao_social").getAsString());
-            cliente.setCnpj(joProduto.get("cnpj").getAsString());
-            cliente.setEndereco(joProduto.get("endereco").getAsString());
-            cliente.setTelefone(joProduto.get("telefone").getAsString());
-            cliente.setEmail(joProduto.get("email").getAsString());
+            cliente.setRazaoSocial(joCliente.get("razao_social").getAsString());
+            cliente.setCnpj(joCliente.get("cnpj").getAsString());
+            cliente.setEndereco(joCliente.get("endereco").getAsString());
+            cliente.setTelefone(joCliente.get("telefone").getAsString());
+            cliente.setEmail(joCliente.get("email").getAsString());
 
             ClienteDAO clienteDAO = new ClienteDAO(context);
 

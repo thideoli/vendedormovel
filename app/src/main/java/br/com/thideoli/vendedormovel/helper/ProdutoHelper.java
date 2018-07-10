@@ -24,6 +24,10 @@ public class ProdutoHelper {
     }
 
     public void sendJsonToDB(String produtos) throws Exception {
+
+        if(produtos.equals("null"))
+            return;
+
         JsonParser jp = new JsonParser();
         JsonObject jo = jp.parse(produtos).getAsJsonObject();
 

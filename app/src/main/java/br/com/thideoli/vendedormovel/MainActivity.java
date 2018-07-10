@@ -22,6 +22,7 @@ import java.util.GregorianCalendar;
 import java.util.Map;
 
 import br.com.thideoli.vendedormovel.helper.ClienteHelper;
+import br.com.thideoli.vendedormovel.helper.PedidoHelper;
 import br.com.thideoli.vendedormovel.helper.ProdutoHelper;
 import br.com.thideoli.vendedormovel.utils.AsyncResponse;
 import br.com.thideoli.vendedormovel.utils.Network;
@@ -126,6 +127,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
             String clientes = ((Map<String, String>) output).get("clientes");
             new ClienteHelper(this).sendJsonToDB(clientes);
+
+            String pedidos = ((Map<String, String>) output).get("pedidos");
+            new PedidoHelper(this).sendJsonToDB(pedidos);
 
             atualizaDataHoraUltimaSincronizacao();
 
