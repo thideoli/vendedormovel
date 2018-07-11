@@ -49,4 +49,9 @@ public class Produto implements Serializable {
     public void setEstoque(int estoque) {
         this.estoque = estoque;
     }
+
+    @Override
+    public String toString() {
+        return descricao;
+    }
 }

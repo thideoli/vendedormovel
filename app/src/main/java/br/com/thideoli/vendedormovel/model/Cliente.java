@@ -70,4 +70,8 @@ public class Cliente implements Serializable{
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return razaoSocial;
+    }
 }

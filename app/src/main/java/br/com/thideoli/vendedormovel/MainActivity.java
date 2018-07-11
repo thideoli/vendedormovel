@@ -25,6 +25,7 @@ import br.com.thideoli.vendedormovel.helper.ClienteHelper;
 import br.com.thideoli.vendedormovel.helper.PedidoHelper;
 import br.com.thideoli.vendedormovel.helper.ProdutoHelper;
 import br.com.thideoli.vendedormovel.utils.AsyncResponse;
+import br.com.thideoli.vendedormovel.utils.Date;
 import br.com.thideoli.vendedormovel.utils.Network;
 import br.com.thideoli.vendedormovel.utils.Receiver;
 
@@ -145,9 +146,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     private void atualizaDataHoraUltimaSincronizacao() {
-        Calendar cal = new GregorianCalendar(Calendar.getInstance().getTimeZone());
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        String date = df.format(cal.getTime());
+        String date = Date.pegaDataHoraAtual();
         ((TextView) findViewById(R.id.dateTimeTextView)).setText(date);
 
         SharedPreferences loginActivityPreferences = getSharedPreferences("VendedorMovel", MODE_PRIVATE);
@@ -155,4 +154,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         editor.putString("last_update", date);
         editor.commit();
     }
+
+
 }

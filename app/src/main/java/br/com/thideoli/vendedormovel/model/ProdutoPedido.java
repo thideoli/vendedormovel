@@ -59,4 +59,15 @@ public class ProdutoPedido implements Serializable{
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
+
+    @Override
+    public String toString() {
+        return "ProdutoPedido{" +
+                "pedido='" + pedido + '\'' +
+                ", produto='" + produto + '\'' +
+                ", preco=" + preco +
+                ", quantidade=" + quantidade +
+                ", subtotal=" + subtotal +
+                '}';
+    }
 }
