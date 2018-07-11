@@ -66,7 +66,7 @@ public class NewOrderActivity extends AppCompatActivity {
 
     private void preencheComboProdutos() {
         ProdutoDAO produtoDAO = new ProdutoDAO(NewOrderActivity.this);
-        List<Produto> produtos = produtoDAO.listAll();
+        List<Produto> produtos = produtoDAO.listAllAtivos();
 
         ArrayAdapter<Produto> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, produtos);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

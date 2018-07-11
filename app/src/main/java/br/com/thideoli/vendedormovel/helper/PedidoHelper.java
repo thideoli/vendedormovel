@@ -7,6 +7,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.json.JSONException;
+import org.json.JSONStringer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +26,36 @@ public class PedidoHelper {
 
     public PedidoHelper(Context context) {
         this.context = context;
+    }
+
+    public static String toJsonString(Pedido pedido) {
+        JSONStringer json = new JSONStringer();
+
+        try {
+            json.object()
+                    .key("cliente").value(pedido.getCliente())
+                    .key("data").value(pedido.getData())
+                    .key("enviado").value(1)
+                    .key("total").value(pedido.getTotal())
+                    .key("vendedor").value(pedido.getVendedor())
+                    .key("itens").array();
+
+            for (ProdutoPedido produtoPedido : pedido.getProdutosPedido()) {
+                json.object()
+                        .key("descricao").value(produtoPedido.getProduto())
+                        .key("preco").value(produtoPedido.getPreco())
+                        .key("quantidade").value(produtoPedido.getQuantidade())
+                        .key("subtotal").value(produtoPedido.getSubtotal())
+                        .endObject();
+            }
+
+            json.endArray()
+                    .endObject();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return json.toString();
     }
 
     public void sendJsonToDB(String pedidos) throws Exception {
@@ -50,29 +83,34 @@ public class PedidoHelper {
 
             List<ProdutoPedido> produtosPedido = new ArrayList<ProdutoPedido>();
 
-            JsonArray jaProdutos = joPedido.getAsJsonArray("itens");
+            if(joPedido.has("itens")) {
 
-            ProdutoPedidoDAO produtoPedidoDAO = new ProdutoPedidoDAO(context);
-            produtoPedidoDAO.deleteByPedido(entry.getKey());
+                JsonArray jaProdutos = joPedido.getAsJsonArray("itens");
 
-            for(Object o : jaProdutos){
-                JsonObject joProduto = (JsonObject) o;
+                ProdutoPedidoDAO produtoPedidoDAO = new ProdutoPedidoDAO(context);
+                produtoPedidoDAO.deleteByPedido(entry.getKey());
 
-                ProdutoPedido produtoPedido = new ProdutoPedido();
-                produtoPedido.setPedido(entry.getKey());
-                produtoPedido.setProduto(joProduto.get("descricao").getAsString());
-                produtoPedido.setPreco(joProduto.get("preco").getAsDouble());
-                produtoPedido.setQuantidade(joProduto.get("quantidade").getAsInt());
-                produtoPedido.setSubtotal(joProduto.get("subtotal").getAsDouble());
 
-                produtosPedido.add(produtoPedido);
+                for (Object o : jaProdutos) {
+                    JsonObject joProduto = (JsonObject) o;
 
-                produtoPedidoDAO.insert(produtoPedido);
+                    ProdutoPedido produtoPedido = new ProdutoPedido();
+                    produtoPedido.setPedido(entry.getKey());
+                    produtoPedido.setProduto(joProduto.get("descricao").getAsString());
+                    produtoPedido.setPreco(joProduto.get("preco").getAsDouble());
+                    produtoPedido.setQuantidade(joProduto.get("quantidade").getAsInt());
+                    produtoPedido.setSubtotal(joProduto.get("subtotal").getAsDouble());
+
+                    produtosPedido.add(produtoPedido);
+
+                    produtoPedidoDAO.insert(produtoPedido);
+
+                }
 
             }
-
-
             pedido.setProdutosPedido(produtosPedido);
+
+
 
             PedidoDAO pedidoDAO = new PedidoDAO(context);
 

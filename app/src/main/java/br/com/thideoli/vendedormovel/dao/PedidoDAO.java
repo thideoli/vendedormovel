@@ -16,6 +16,42 @@ public class PedidoDAO extends DAO {
 
     private final Context context;
 
+    public void deletePedidoNotSend(){
+
+        PedidoDAO pedidoDAO = new PedidoDAO(context);
+        List<Pedido> pedidos = pedidoDAO.listNotSend();
+
+        for(Pedido pedido : pedidos){
+
+            ProdutoPedidoDAO produtoPedidoDAO = new ProdutoPedidoDAO(context);
+            produtoPedidoDAO.deleteByPedido(pedido.getCodigo());
+
+            String[] args = {pedido.getCodigo()};
+
+            SQLiteDatabase db = getReadableDatabase();
+            db.delete("Pedidos", "codigo = ?", args);
+        }
+
+    }
+
+    public void deleteAll(){
+
+        PedidoDAO pedidoDAO = new PedidoDAO(context);
+        List<Pedido> pedidos = pedidoDAO.listAll();
+
+        for(Pedido pedido : pedidos){
+
+            ProdutoPedidoDAO produtoPedidoDAO = new ProdutoPedidoDAO(context);
+            produtoPedidoDAO.deleteByPedido(pedido.getCodigo());
+
+            String[] args = {pedido.getCodigo()};
+
+            SQLiteDatabase db = getReadableDatabase();
+            db.delete("Pedidos", "codigo = ?", args);
+        }
+
+    }
+
     public PedidoDAO(Context context) {
         super(context);
         this.context = context;
@@ -23,6 +59,23 @@ public class PedidoDAO extends DAO {
 
     public List<Pedido> listAll(){
         String sql = "SELECT * FROM Pedidos";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
+        List<Pedido> pedidos = new ArrayList<Pedido>();
+
+        while (c.moveToNext()){
+            Pedido pedido = getPedido(c);
+            pedidos.add(pedido);
+        }
+
+        c.close();
+
+        return pedidos;
+    }
+
+    public List<Pedido> listNotSend(){
+        String sql = "SELECT * FROM Pedidos WHERE enviado = 0";
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(sql, null);
 

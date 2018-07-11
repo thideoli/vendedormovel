@@ -34,6 +34,23 @@ public class ProdutoDAO extends DAO {
         return produtos;
     }
 
+    public List<Produto> listAllAtivos(){
+        String sql = "SELECT * FROM Produtos WHERE estoque = 1 ORDER BY descricao ASC";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
+        List<Produto> produtos = new ArrayList<Produto>();
+
+        while (c.moveToNext()){
+            Produto produto = getProduto(c);
+            produtos.add(produto);
+        }
+
+        c.close();
+
+        return produtos;
+    }
+
     public Produto findByCode(String codigo){
         String sql = "SELECT * FROM Produtos WHERE codigo = ? ORDER BY descricao ASC";
 
