@@ -58,4 +58,9 @@ public class OrdersActivity extends AppCompatActivity {
             }
         };
     }
+
+    public void chamaTelaNovoPedido(View view) {
+        Intent intent = new Intent(OrdersActivity.this, NewOrderActivity.class);
+        startActivity(intent);
+    }
 }
