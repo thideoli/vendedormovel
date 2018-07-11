@@ -52,11 +52,9 @@ public class OrdersActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Pedido pedido = (Pedido) lvPedidos.getItemAtPosition(position);
 
-                /*
                 Intent intent = new Intent(OrdersActivity.this, OrderActivity.class);
                 intent.putExtra("pedido", pedido);
                 startActivity(intent);
-                */
             }
         };
     }

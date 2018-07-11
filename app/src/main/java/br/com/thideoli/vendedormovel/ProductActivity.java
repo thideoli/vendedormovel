@@ -21,9 +21,9 @@ public class ProductActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Produto produto = (Produto) intent.getSerializableExtra("produto");
 
-        TextView codigo = findViewById(R.id.order_detail_code);
-        TextView descricao = findViewById(R.id.order_detail_name);
-        TextView preco = findViewById(R.id.order_detail_address);
+        TextView codigo = findViewById(R.id.product_detail_code);
+        TextView descricao = findViewById(R.id.product_detail_name);
+        TextView preco = findViewById(R.id.product_detail_address);
         TextView estoque = findViewById(R.id.product_detail_stock);
 
         codigo.setText(produto.getCodigo());

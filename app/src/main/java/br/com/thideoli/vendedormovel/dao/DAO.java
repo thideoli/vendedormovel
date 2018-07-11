@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DAO extends SQLiteOpenHelper {
 
     public DAO(Context context) {
-        super(context, "VendedorMovel", null, 2);
+        super(context, "VendedorMovel", null, 3);
     }
 
     @Override
@@ -41,6 +41,15 @@ public class DAO extends SQLiteOpenHelper {
                 "total REAL NOT NULL, " +
                 "enviado INTEGER NOT NULL);";
         db.execSQL(sql);
+
+        //Cria tabela ProdutosPedido
+        sql = "CREATE TABLE ProdutosPedido (" +
+                "pedido TEXT NOT NULL, " +
+                "produto TEXT NOT NULL, " +
+                "preco REAL NOT NULL, " +
+                "quantidade INTEGER NOT NULL, " +
+                "subtotal REAL NOT NULL);";
+        db.execSQL(sql);
     }
 
     @Override
@@ -61,5 +70,19 @@ public class DAO extends SQLiteOpenHelper {
 
             version++;
         }
+
+        if(version == 2){
+            //Cria tabela ProdutosPedido
+            sql = "CREATE TABLE ProdutosPedido (" +
+                    "pedido TEXT NOT NULL, " +
+                    "produto TEXT NOT NULL, " +
+                    "preco REAL NOT NULL, " +
+                    "quantidade INTEGER NOT NULL, " +
+                    "subtotal REAL NOT NULL);";
+            db.execSQL(sql);
+
+            version++;
+        }
+
     }
 }

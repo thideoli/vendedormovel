@@ -46,7 +46,7 @@ public class PedidoAdapter extends BaseAdapter{
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
         View view = layoutInflater.inflate(R.layout.list_orders, null);
 
-        TextView cliente = view.findViewById(R.id.order_customers);
+        TextView cliente = view.findViewById(R.id.order_code);
         cliente.setText(pedido.getCliente());
 
         TextView data = view.findViewById(R.id.order_date);

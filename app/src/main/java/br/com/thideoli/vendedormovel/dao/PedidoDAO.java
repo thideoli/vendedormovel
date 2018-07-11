@@ -10,11 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.thideoli.vendedormovel.model.Pedido;
+import br.com.thideoli.vendedormovel.model.ProdutoPedido;
 
 public class PedidoDAO extends DAO {
 
+    private final Context context;
+
     public PedidoDAO(Context context) {
         super(context);
+        this.context = context;
     }
 
     public List<Pedido> listAll(){
@@ -82,13 +86,14 @@ public class PedidoDAO extends DAO {
 
     @NonNull
     private Pedido getPedido(Cursor c) {
+        ProdutoPedidoDAO produtoPedidoDAO = new ProdutoPedidoDAO(context);
         return new Pedido(
                 c.getString(c.getColumnIndex("codigo")),
                 c.getString(c.getColumnIndex("cliente")),
                 c.getString(c.getColumnIndex("vendedor")),
                 c.getString(c.getColumnIndex("data")),
                 c.getDouble(c.getColumnIndex("total")),
-                c.getInt(c.getColumnIndex("enviado"))
-        );
+                c.getInt(c.getColumnIndex("enviado")),
+                produtoPedidoDAO.listByPedido(c.getString(c.getColumnIndex("codigo"))));
     }
 }

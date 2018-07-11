@@ -2,15 +2,20 @@ package br.com.thideoli.vendedormovel.helper;
 
 import android.content.Context;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import br.com.thideoli.vendedormovel.dao.PedidoDAO;
+import br.com.thideoli.vendedormovel.dao.ProdutoPedidoDAO;
 import br.com.thideoli.vendedormovel.model.Pedido;
+import br.com.thideoli.vendedormovel.model.ProdutoPedido;
 
 public class PedidoHelper {
 
@@ -41,6 +46,33 @@ public class PedidoHelper {
             pedido.setData(joPedido.get("data").getAsString());
             pedido.setTotal(joPedido.get("total").getAsDouble());
             pedido.setEnviado(joPedido.get("enviado").getAsInt());
+
+
+            List<ProdutoPedido> produtosPedido = new ArrayList<ProdutoPedido>();
+
+            JsonArray jaProdutos = joPedido.getAsJsonArray("itens");
+
+            ProdutoPedidoDAO produtoPedidoDAO = new ProdutoPedidoDAO(context);
+            produtoPedidoDAO.deleteByPedido(entry.getKey());
+
+            for(Object o : jaProdutos){
+                JsonObject joProduto = (JsonObject) o;
+
+                ProdutoPedido produtoPedido = new ProdutoPedido();
+                produtoPedido.setPedido(entry.getKey());
+                produtoPedido.setProduto(joProduto.get("descricao").getAsString());
+                produtoPedido.setPreco(joProduto.get("preco").getAsDouble());
+                produtoPedido.setQuantidade(joProduto.get("quantidade").getAsInt());
+                produtoPedido.setSubtotal(joProduto.get("subtotal").getAsDouble());
+
+                produtosPedido.add(produtoPedido);
+
+                produtoPedidoDAO.insert(produtoPedido);
+
+            }
+
+
+            pedido.setProdutosPedido(produtosPedido);
 
             PedidoDAO pedidoDAO = new PedidoDAO(context);
 

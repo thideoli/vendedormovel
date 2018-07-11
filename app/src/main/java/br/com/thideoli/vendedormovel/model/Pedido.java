@@ -1,6 +1,7 @@
 package br.com.thideoli.vendedormovel.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Pedido implements Serializable{
     private String codigo;
@@ -9,17 +10,19 @@ public class Pedido implements Serializable{
     private String data;
     private double total;
     private int enviado;
+    private List<ProdutoPedido> produtosPedido;
 
     public Pedido() {
     }
 
-    public Pedido(String codigo, String cliente, String vendedor, String data, double total, int enviado) {
+    public Pedido(String codigo, String cliente, String vendedor, String data, double total, int enviado, List<ProdutoPedido> produtosPedido) {
         this.codigo = codigo;
         this.cliente = cliente;
         this.vendedor = vendedor;
         this.data = data;
         this.total = total;
         this.enviado = enviado;
+        this.produtosPedido = produtosPedido;
     }
 
     public String getCodigo() {
@@ -68,5 +71,13 @@ public class Pedido implements Serializable{
 
     public void setEnviado(int enviado) {
         this.enviado = enviado;
+    }
+
+    public List<ProdutoPedido> getProdutosPedido() {
+        return produtosPedido;
+    }
+
+    public void setProdutosPedido(List<ProdutoPedido> produtosPedido) {
+        this.produtosPedido = produtosPedido;
     }
 }
